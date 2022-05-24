@@ -12,18 +12,28 @@ typedef uint64_t		uint64;		// 无符号64位整数
 typedef float			float32;	// 单精度浮点
 typedef double			float64;	// 双精度浮点
 
+#ifndef SAFE_DELETE
+#define SAFE_DELETE(P) {if(P) delete[](P);(P)=nullptr;}
+#endif
+
 class SemiGlobalMatching
 {
 public:
 	SemiGlobalMatching();
 	~SemiGlobalMatching();
 
+	enum CensusSize {
+		Census5x5 = 0,
+		Census9x7
+	};
+
+
 	/** \brief SGM参数结构体 */
 	struct SGMOption {
 		uint8	num_paths;		// 聚合路径数
 		sint32  min_disparity;	// 最小视差
 		sint32	max_disparity;	// 最大视差
-
+		CensusSize census_size;
 		// P1,P2 
 		// P2 = P2_int / (Ip-Iq)
 		sint32  p1;				// 惩罚项参数P1
@@ -58,6 +68,8 @@ public:
 	 */
 	bool Reset(const uint32& width, const uint32& height, const SGMOption& option);
 
+	void Release();
+	bool Initialize(const sint32& width, const sint32& height, const SGMOption& option);
 private:
 
 	/** \brief Census变换 */
@@ -105,7 +117,22 @@ private:
 
 	/** \brief 左影像视差图	*/
 	float32* disp_left_;
+	float32* disp_right_;
 
 	/** \brief 是否初始化标志	*/
 	bool is_initialized_;
+
+	uint8* cost_aggr_1_;
+	uint8* cost_aggr_2_;
+	uint8* cost_aggr_3_;
+	uint8* cost_aggr_4_;
+	uint8* cost_aggr_5_;
+	uint8* cost_aggr_6_;
+	uint8* cost_aggr_7_;
+	uint8* cost_aggr_8_;
+
+
+	std::vector<std::pair<int, int>> occlusions_;
+
+	std::vector<std::pair<int, int>> mismatches_;
 };

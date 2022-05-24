@@ -62,7 +62,13 @@ int main() {
 		cv::cvtColor(right_img, right_img, cv::COLOR_RGB2GRAY);
 	}
 
+#if FIGS
+	cv::imshow("left_img", left_img);
+	waitKey(0);
+	cv::imshow("right_img", right_img);
+	waitKey(0);
 
+#endif // FIGS
 
 	return 0;
 }
