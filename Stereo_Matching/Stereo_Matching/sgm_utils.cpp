@@ -51,7 +51,7 @@ void CostAggregateLeftRight(const uint8* img_data, const sint32& width, const si
 	const uint8* cost_init, uint8* cost_aggr, bool is_forward)
 {
 	if (!(width > 0 && height > 0 && max_disparity > min_disparity)){
-		std::cout << "出错" << std::endl;
+		std::cout << "image/parameter error" << std::endl;
 		return;
 	}
 
