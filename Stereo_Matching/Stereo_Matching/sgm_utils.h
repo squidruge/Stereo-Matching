@@ -1,19 +1,18 @@
 #pragma once
-#include"sgm_type.h"
 #include<omp.h>
 #define __builtin_popcountll __popcnt
 
 /**
- * \brief census±ä»»
- * \param source	ÊäÈë£¬Ó°ÏñÊı¾İ
- * \param census	Êä³ö£¬censusÖµÊı×é
- * \param width		ÊäÈë£¬Ó°Ïñ¿í
- * \param height	ÊäÈë£¬Ó°Ïñ¸ß
+ * \brief censuså˜æ¢
+ * \param source	è¾“å…¥ï¼Œå½±åƒæ•°æ®
+ * \param census	è¾“å‡ºï¼Œcensuså€¼æ•°ç»„
+ * \param width		è¾“å…¥ï¼Œå½±åƒå®½
+ * \param height	è¾“å…¥ï¼Œå½±åƒé«˜
  */
 void census_transform_5x5(const uint8* source, uint32* census, const sint32& width, const sint32& height);
 
-// ¿ÉÒÔÔÙÊÔÊÔ²éÕÒ±í¼ÓËÙÒ»ÏÂÕâÒ»²½
-// »ùÓÚCensus±ä»»ÔõÃ´¼ÆËã´ú¼ÛÖµ£¬·Ç³£µÄ¼òµ¥£¬¾ÍÊÇ¼ÆËãÁ½¸öcensusÖµµÄººÃ÷£¨hamming£©¾àÀë£¬Ò²¾ÍÊÇÁ½¸öÎ»´®ÖĞ²»Í¬µÄÎ»µÄ¸öÊı.
+// å¯ä»¥å†è¯•è¯•æŸ¥æ‰¾è¡¨åŠ é€Ÿä¸€ä¸‹è¿™ä¸€æ­¥
+// åŸºäºCensuså˜æ¢æ€ä¹ˆè®¡ç®—ä»£ä»·å€¼ï¼Œéå¸¸çš„ç®€å•ï¼Œå°±æ˜¯è®¡ç®—ä¸¤ä¸ªcensuså€¼çš„æ±‰æ˜ï¼ˆhammingï¼‰è·ç¦»ï¼Œä¹Ÿå°±æ˜¯ä¸¤ä¸ªä½ä¸²ä¸­ä¸åŒçš„ä½çš„ä¸ªæ•°.
 uint8 hamming_distance(const uint32 x, const uint32 y);
 
 void CostAggregateLeftRight(const uint8* img_data, const sint32& width, const sint32& height,
