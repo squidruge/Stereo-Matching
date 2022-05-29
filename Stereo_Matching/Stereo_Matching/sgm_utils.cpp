@@ -41,7 +41,7 @@ void census_transform_5x5(const uint8* grayscale_img, uint32* census, const sint
 //if your compiler supports 64-bit integers 直接使用硬件寄存器加速
 uint8 hamming_distance(const uint32 x, const uint32 y)
 {
-	//数一个1
+	//数1的个数
 	return __builtin_popcountll(x ^ y);
 }
 
