@@ -37,21 +37,6 @@ void census_transform_5x5(const uint8* grayscale_img, uint32* census, const sint
 	}
 }
 
-/*
-uint8 Hamming32(const uint32& x, const uint32& y)
-{
-	uint32 dist = 0, val = x ^ y;
-
-	// Count the number of set bits
-	while (val) {
-		++dist;
-		//即计数val里1的数量
-		val &= val - 1;	//value = value & (value - 1)
-	}
-	return dist;
-}
-*/
-
 //汉明距离计算
 //if your compiler supports 64-bit integers 直接使用硬件寄存器加速
 uint8 hamming_distance(const uint32 x, const uint32 y)
